@@ -1,0 +1,64 @@
+"""
+  Unfinished
+  
+  Human readable duration format
+"""
+
+def format_duration(seconds):
+    if seconds >= 31556952:
+        years = seconds // 31556952
+        seconds = seconds - (years * 31556952)
+        days = seconds // 86400
+        seconds = seconds - (days * 86400)
+        hours = seconds // 3600
+        seconds = seconds - (hours * 3600)
+        minutes = seconds // 60
+        seconds = seconds - (minutes * 60)
+        if seconds == 0:
+            return "{} year, {} day, {} hour, {} minutes".format(years, days, hours, minutes)
+        elif minutes == 0:
+            return "{} year, {} day, {} hour".format(years, days, hours)
+        elif hours == 0:
+            return "{} year, {} day".format(years, days)
+        elif days == 0:
+            return "{} year"
+        else:
+            return "{} year, {} day, {} hour, {} minute and {} seconds".format(years, days, hours, minutes, seconds)
+        
+    if seconds >= 86400:
+        days = seconds // 86400
+        seconds = seconds - (days * 86400)
+        hours = seconds // 3600
+        seconds = seconds - (hours * 3600)
+        minutes = seconds // 60
+        seconds = seconds - (minutes * 60)
+        if seconds == 0:
+            return "{} day, {} hour, {} minutes".format(days, hours, minutes)
+        elif minutes == 0:
+            return "{} day, {} hour".format(days, hours)
+        elif hours == 0:
+            return "{} day".format(days)
+        else:
+            return "{} day, {} hour, {} minute and {} seconds".format(days, hours, minutes, seconds)
+    if seconds >= 3600:
+        hours = seconds // 3600
+        seconds = seconds - (hours * 3600)
+        minutes = seconds // 60
+        seconds = seconds - (minutes * 60)
+        if minutes == 0:
+            return "{} hour".format(hours)
+        elif seconds == 0 :
+            return "{} hour, {} minutes".format(hours, minutes)
+        else:
+            return "{} hour, {} minute and {} seconds".format(hours, minutes, seconds)
+    if seconds >= 60:
+        minutes = seconds // 60
+        seconds = seconds - (minutes * 60)
+        if seconds == 0:
+            return "{} minutes".format(minutes)
+        else:
+            return "{} minute and {} seconds".format(minutes, seconds)
+    if seconds > 0:
+        return "{} second".format(seconds)
+    else:
+        return "now"
